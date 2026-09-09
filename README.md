@@ -21,6 +21,7 @@ a popup with connection status and **Connect / Disconnect** buttons.
   `globalprotectcallback://` URL scheme.
 - No additional packages: the widget uses only shell built-ins, `ip`-style
   `/sys` reads and the `globalprotect` CLI.
+- Install globalprotect-bin from [AUR](https://aur.archlinux.org/packages/globalprotect-bin)
 
 > This plugin is an independent community widget. It is not affiliated with
 > or endorsed by Palo Alto Networks.
