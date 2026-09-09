@@ -3,6 +3,8 @@
 A status widget for the [Omarchy](https://omarchy.org) shell (Quickshell bar)
 for the Palo Alto Networks **GlobalProtect** VPN client.
 
+![Preview](./preview.png)
+
 While the VPN tunnel is up it shows a shield icon and the **elapsed connection
 time** (e.g. `1:23:45`) in the bar. When the tunnel goes down the widget
 disappears automatically — usually within 2 seconds. Clicking the widget opens
