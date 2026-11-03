@@ -39,6 +39,16 @@ BarWidget {
   property string lastPoll: "<none>"
   property bool menuOpen: false
 
+  // PopupCard delegates close() to its owner (this widget). Defining close()
+  // here keeps `open: root.menuOpen` binding-driven: the focus-grab's
+  // onCleared path flips menuOpen instead of imperatively stomping
+  // popup.open, which would permanently break the binding and leave the
+  // popup unable to open again. open()/opened() satisfy the bar's
+  // summon/hide/toggle shape contract (see omarchy.clock).
+  function close() { root.menuOpen = false }
+  function open() { root.menuOpen = true }
+  readonly property bool opened: root.menuOpen
+
   function fmtElapsed(seconds) {
     var d = Math.floor(seconds / 86400)
     var h = Math.floor((seconds % 86400) / 3600)
@@ -157,7 +167,10 @@ BarWidget {
       tooltipText: root.connected
         ? "GlobalProtect VPN — connected since " + root.fmtClock(root.sinceEpoch)
         : "GlobalProtect VPN"
-      onPressed: root.menuOpen = !root.menuOpen
+      onPressed: function(mouseButton) {
+        if (mouseButton !== Qt.LeftButton) return
+        root.menuOpen = !root.menuOpen
+      }
     }
 
     Text {
